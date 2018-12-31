@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+  
+before_install:
+  - docker build -t montmirail/effective-engine -f Dockerfile.dev .
+
+script:
+  - docker run montmirail/effective-engine npm run test -- --coverage
