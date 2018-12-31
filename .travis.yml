@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run montmirail/effective-engine npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "effective-engine"
+  env: "EffectiveEngine-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-549866359037"
+  bucket_path: "effective-engine"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
